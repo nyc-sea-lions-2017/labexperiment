@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+
+
+
+  resources :proposals, only: [:index, :new, :create, :show]
+
   root 'users#index'
 
   get '/users/login', to: 'users#login'
@@ -6,4 +12,5 @@ Rails.application.routes.draw do
   post '/users/login', to: 'users#create_session'
 
   resources :users
+
 end

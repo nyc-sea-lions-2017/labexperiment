@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 20170621154305) do
   enable_extension "plpgsql"
 
   create_table "proposals", force: :cascade do |t|
-    t.string "name"
-    t.string "summary"
-    t.string "state"
-    t.string "hypothesis"
-    t.bigint "proposer_id"
+    t.string "name", null: false
+    t.string "summary", null: false
+    t.string "state", null: false
+    t.string "hypothesis", null: false
+    t.bigint "proposer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["proposer_id"], name: "index_proposals_on_proposer_id"

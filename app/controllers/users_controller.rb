@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    @proposals = Proposal.all
   end
 
   def show

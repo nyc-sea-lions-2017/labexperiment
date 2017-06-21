@@ -1,6 +1,19 @@
-<a href = "/users/new">register</a><br>
 <% if logged_in? %>
-  <a href = "/users/logout">log out</a><br>
+  click <%= link_to "here", new_proposal_path %> to create a proposal
 <% else %>
-  <a href = "/users/login">log in</a><br>
+  <a href = "/users/new">register</a><br>
+<% end %>
+
+
+
+<h1>Proposals</h1>
+ <% if @proposals %>
+  <ul>
+  <p> here are is a list of all proposals</p>
+    <%@proposals.each do |proposal| %>
+      <li> <%=proposal.name %></li>
+    <% end %>
+  </ul>
+
+
 <% end %>

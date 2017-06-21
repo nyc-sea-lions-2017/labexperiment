@@ -39,7 +39,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
-
+    bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -181,11 +181,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-
-  better_errors
-
   bcrypt (~> 3.1.11)
-
+  better_errors
   byebug
   faker
   jbuilder (~> 2.5)

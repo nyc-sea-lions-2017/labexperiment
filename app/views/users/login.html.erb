@@ -1,19 +1,35 @@
-<% if @errors %>
-   <span>Something went wrong:</span>
-   <ul class="error-list pad-b-2">
-     <% @errors.each do |error| %>
-       <li class="error-item"><%= error %></li>
-     <% end %>
-   </ul>
- <% end %>
+
+<%= form_for :user, url: {action: "login"} do |f| %>
+
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@user.errors.count, "error") %> prohibited
+      this user from being saved:
+    </h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 
 
 
- <h1>Sign In</h1>
-  <form action='/users/login' method='post'>
-    <label>Email: <input type='text' name='user[email]'></label><br>
-    <label>Password: <input type='password' name='user[password]'></label><br>
-    <input type='submit' value='Sign In'>
-  </form>
+  <p>
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </p>
+
+  <p>
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </p>
+
+  <p>
+    <%= f.submit "Log in"%>
+  </p>
+<% end %>
 
 <%= link_to 'Back', users_path %>

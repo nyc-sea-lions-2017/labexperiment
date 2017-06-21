@@ -23,20 +23,25 @@ class UsersController < ApplicationController
 
   def login
     @user = User.new
-    # binding.pry
-    # @user = User.find_by(email: params[:user][:email])
-    #
-    # if @user && @user.authenticate(params[:user][:password])
-    #   session[:user_id] = @user.id
-    #   erb :'users/show'
-    # else
-    #   @errors = ["Invalid Email or Password"]
-    #   erb :'users/login'
-    # end
   end
 
-  def session
+  def logout
+    session.clear
+    redirect_to '/'
+  end
 
+  def create_session
+
+    @user = User.find_by(email: params[:user][:username])
+
+    if @user && @user.authenticate(params[:user][:password])
+      session[:user_id] = @user.id
+      redirect_to @user
+    else
+      @user = User.new
+      @user.errors.add(:invalid, "Email or Password")
+      render "login"
+    end
   end
 
   private

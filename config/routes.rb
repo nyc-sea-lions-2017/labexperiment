@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'users#index'
 
   get '/users/login', to: 'users#login'
-  post '/users/login', to: 'users#session'
+  get '/users/logout', to: 'users#logout'
+  post '/users/login', to: 'users#create_session'
 
   resources :users
 end

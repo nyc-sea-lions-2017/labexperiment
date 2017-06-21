@@ -1,0 +1,16 @@
+
+<h5> here is the new form </h5>
+
+<%= render "errors" %>
+
+<%= form_for @proposal, url: {action: "create"}, html: {class: "proposal_form"} do |f| %>
+  <p><%= f.label :name %></p>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.label :state %></p>
+  <p><%= f.text_field :state %></p>
+  <p><%= f.label :summary %></p>
+  <p><%= f.text_area :summary, size: "60x12" %></p>
+  <p><%= f.label :hypothesis %></p>
+  <p><%= f.text_area :hypothesis, size: "60x12" %></p>
+  <p><%= f.submit "Create" %></p>
+<% end %>

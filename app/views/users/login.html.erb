@@ -1,18 +1,19 @@
+<% if @errors %>
+   <span>Something went wrong:</span>
+   <ul class="error-list pad-b-2">
+     <% @errors.each do |error| %>
+       <li class="error-item"><%= error %></li>
+     <% end %>
+   </ul>
+ <% end %>
 
-<%= form_for :user, url: users_path do |f| %>
-  <p>
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </p>
 
-  <p>
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-  </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+ <h1>Sign In</h1>
+  <form action='/users/login' method='post'>
+    <label>Email: <input type='text' name='user[email]'></label><br>
+    <label>Password: <input type='password' name='user[password]'></label><br>
+    <input type='submit' value='Sign In'>
+  </form>
 
 <%= link_to 'Back', users_path %>

@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170621154305) do
+
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "proposals", force: :cascade do |t|
     t.string "name"
@@ -24,6 +28,15 @@ ActiveRecord::Schema.define(version: 20170621154305) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["proposer_id"], name: "index_proposals_on_proposer_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "password_digest", null: false
+    t.string "email", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+
   end
 
 end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :proposals, only: [:index, :new, :create, :show] do
     resources :experiments
   end
-
+  resources :procedures
   root 'proposals#index'
 
   get '/users/login', to: 'users#login'

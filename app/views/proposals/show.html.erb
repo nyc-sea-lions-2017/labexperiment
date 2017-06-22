@@ -12,8 +12,15 @@ List of experimenters who worked on this proposal<br><br>
   experimenter name: <%=experiment.experimenter.username%><br>
   <%= link_to 'click here', proposal_experiment_path(@proposal, experiment) %> to see results and conclusions of experiment<br><br>
 <% end %><br>
+
 <% if @proposal.state == "open" %>
-  <a href="/proposals/<%=@proposal.id%>/experiments/new">Create Experiment on this Proposal</a><br>
+
+<%= render "errors" %>
+
+<%= form_for @experiment, url: {action: "create"}, html: {class: "experiment_form"} do |f| %>
+  <p><%= f.submit "Create new experiment" %></p>
+<% end %>
+
 <% end %>
 <%= link_to 'Back', proposals_path %>
 

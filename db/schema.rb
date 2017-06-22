@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20170622190021) do
     t.index ["proposal_id"], name: "index_experiments_on_proposal_id"
   end
 
+  create_table "observations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "body"
+    t.string "observable_type"
+    t.bigint "observable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["observable_type", "observable_id"], name: "index_observations_on_observable_type_and_observable_id"
+    t.index ["user_id"], name: "index_observations_on_user_id"
+  end
+
   create_table "procedures", force: :cascade do |t|
     t.string "body", null: false
     t.bigint "experiment_id", null: false
@@ -64,5 +75,6 @@ ActiveRecord::Schema.define(version: 20170622190021) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "observations", "users"
   add_foreign_key "procedures", "experiments"
 end

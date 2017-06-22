@@ -1,11 +1,4 @@
 
-<% if logged_in? %>
-  click <%= link_to "here", new_proposal_path %> to create a proposal
-<% else %>
-  <a href = "/users/new">register</a><br>
-<% end %>
-
-
 
 <h1>Proposal</h1>
 
@@ -18,6 +11,9 @@
   </ul>
 
 <% end %>
-  click <%= link_to "here", new_proposal_path %> to create a proposal
 
+
+
+<% if logged_in? %>
+  click <%= link_to "here", new_proposal_path %> to create a proposal
 <% end %>

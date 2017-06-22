@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170622190021) do
     t.index ["proposal_id"], name: "index_experiments_on_proposal_id"
   end
 
+
   create_table "observations", force: :cascade do |t|
     t.bigint "user_id"
     t.string "body"
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170622190021) do
     t.index ["commentable_type", "commentable_id"], name: "index_observations_on_commentable_type_and_commentable_id"
     t.index ["user_id"], name: "index_observations_on_user_id"
   end
+
 
   create_table "procedures", force: :cascade do |t|
     t.string "body", null: false
@@ -75,6 +77,8 @@ ActiveRecord::Schema.define(version: 20170622190021) do
     t.datetime "updated_at", null: false
   end
 
+
   add_foreign_key "observations", "users"
+
   add_foreign_key "procedures", "experiments"
 end

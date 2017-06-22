@@ -5,6 +5,7 @@ class ProposalsController < ApplicationController
 
   def new
     @proposal = Proposal.new
+
   end
 
   def create
@@ -21,6 +22,7 @@ class ProposalsController < ApplicationController
 
   def show
     @proposal = Proposal.find(params[:id])
+    @experiment = Experiment.new
     @comment = Comment.new
   end
 

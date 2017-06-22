@@ -24,6 +24,12 @@ class ProposalsController < ApplicationController
     @comment = Comment.new
   end
 
+  def close
+    @proposal = Proposal.find_by(id: params[:id])
+    @proposal.state = "close"
+    redirect_to @proposal
+  end
+
   private
 
   def post_params

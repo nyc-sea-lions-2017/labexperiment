@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   @comment = Comment.new(body: params[:comment][:body], user_id: current_user.id, commentable_id: params[:comment][:commentable_id], commentable_type: params[:comment][:commentable_type] )
   if @comment.save
 
-    redirect_to "/proposals/#{@comment.commentable_id}"
+    redirect_back(fallback_location: root_path)
   else
     @errors = @comment.errors.full_messages
 

@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   get '/users/logout', to: 'users#logout'
   post '/users/login', to: 'users#create_session'
   get '/proposals/close/:id', to: 'proposals#close'
-
+  get '/experiments/results/:id' to: 'experimens#results'
+  get '/experiments/conclusions/:id' to: 'experiments#results'
   resources :users
 
 end

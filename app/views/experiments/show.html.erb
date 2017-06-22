@@ -3,7 +3,13 @@
 <p>experimenter: <%= @experiment.experimenter.username %><br></p>
 <p>results: <%= @experiment.results %><br></p>
 <p>conclusions: <%= @experiment.conclusions %><br></p>
+<p>procedure:<br>
 
+    <% @experiment.procedures.each do |procedure| %>
+        <%= procedure.body %><br>
+    <% end %>
+
+  </p>
 
 <% if logged_in? %>
 <p> Do you have any comments for this experiment? </p>
@@ -27,4 +33,6 @@
 
     <li><%=comment.body%></li>
 
-  <%end%>
+  <%end%><br>
+  
+  close experiment

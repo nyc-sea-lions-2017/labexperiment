@@ -4,17 +4,18 @@ class ExperimentsController < ApplicationController
   end
 
   def show
-    @experiment = Experiment.find(params[:id])
     @comment = Comment.new
+    @experiment = Experiment.find(params[:id])
   end
 
 
   def create
-    @experiment = Experiment.new(post_params)
+    @experiment = Experiment.new
     @experiment.experimenter_id = current_user.id
     @experiment.proposal_id = params[:proposal_id]
+    @experiment.state = "open"
     if @experiment.save
-      redirect_to "/proposals/#{@experiment.proposal.id}/experiments/#{@experiment.id}"
+      redirect_to "/experiments/#{@experiment.id}/procedures/new"
     else
       render 'new'
     end
@@ -23,6 +24,5 @@ class ExperimentsController < ApplicationController
   private
 
   def post_params
-    params.require(:experiment).permit(:results, :conclusions)
   end
 end

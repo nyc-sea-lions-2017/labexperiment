@@ -28,13 +28,25 @@ ActiveRecord::Schema.define(version: 20170622190021) do
 
   create_table "experiments", force: :cascade do |t|
     t.integer "experimenter_id", null: false
-    t.string "results", null: false
-    t.string "conclusions", null: false
+    t.string "results"
+    t.string "conclusions"
     t.bigint "proposal_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
+    t.string "state"
     t.index ["proposal_id"], name: "index_experiments_on_proposal_id"
+  end
+
+  create_table "observations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "body"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_observations_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_observations_on_user_id"
   end
 
   create_table "procedures", force: :cascade do |t|
@@ -64,5 +76,6 @@ ActiveRecord::Schema.define(version: 20170622190021) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "observations", "users"
   add_foreign_key "procedures", "experiments"
 end

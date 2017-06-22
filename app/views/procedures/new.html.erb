@@ -1,0 +1,5 @@
+<%= form_for @procedure, url: {action: "create"}, html: {class: "procedure_form"} do |f| %>
+  <p><%= f.label :Procedure %></p>
+  <p><%= f.text_area :body, size: "60x12" %></p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

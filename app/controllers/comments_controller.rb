@@ -1,14 +1,25 @@
 class CommentsController < ApplicationController
 
   def create
-  @comment = Comment.new(body: params[:body], commenter_id: current_user.id, commentable_id: params[:commentable_id], commentable_type: params[:commentable_type] )
+  @comment = Comment.new(body: params[:comment][:body], user_id: current_user.id, commentable_id: params[:comment][:commentable_id], commentable_type: params[:comment][:commentable_type] )
   if @comment.save
-    redirect_to "/users/#{@proposal.proposer_id}/proposals/#{@proposal.id}"
+
+    redirect_to "/proposals/#{@comment.commentable_id}"
   else
     @errors = @comment.errors.full_messages
-    render "proposal/#{proposal.id}"
+
+    render @errors
   end
   end
 
+
+   def find_commentable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
+  end
 
 end

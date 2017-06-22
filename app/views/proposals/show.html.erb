@@ -1,33 +1,34 @@
 <h1>Proposal</h1>
 
 
+<h3>here is the proposal info</h3>
+<p><%= @proposal.name %></p>
+<p><%= @proposal.summary %></p>
+<p><%= @proposal.state %></p>
+<p><%= @proposal.hypothesis %></p>
 
 
 <% if logged_in? %>
-
-  <%= form_for @comment, url: {action: "comments#create"}, html: {class: "comment_form"} do |f| %>
-  <%f.hidden_field :commentable_id, :value => @proposal.id%>
-  <%f.hidden_field :commentable_type, :value => "proposal" %>
-  <%f.hidden_field :user_id, :value => @proposal.proposer_id %>
-    <p><%= f.label :body %></p>
+<p> Do you have any comments for this proposal? </p>
+  <%= form_for @comment, html: {class: "comment_form"} do |f| %>
+  <%=f.hidden_field :commentable_id, :value => @proposal.id%>
+  <%=f.hidden_field :commentable_type, :value => @proposal.class %>
+  <%=f.hidden_field :user_id, :value => @proposal.proposer_id %>
+    <p><%= f.hidden_field :body %></p>
     <p><%= f.text_field :body %></p>
     <p><%= f.submit "Submit" %></p>
   <% end %>
 
   <h5> here are the comments </h5>
+
   <ul>
+
+<% end %>
+
+
   <% @proposal.comments.each do |comment| %>
 
     <li><%=comment.body%></li>
 
   <%end%>
-
-<% end %>
-
-
-here is the proposal info<br>
-<%= @proposal.name %><br>
-<%= @proposal.summary %><br>
-<%= @proposal.state %><br>
-<%= @proposal.hypothesis %><br>
 

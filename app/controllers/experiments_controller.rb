@@ -5,6 +5,7 @@ class ExperimentsController < ApplicationController
 
   def show
     @experiment = Experiment.find(params[:id])
+    @comment = Comment.new
   end
 
 

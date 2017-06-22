@@ -1,0 +1,27 @@
+<h1>Observations#new</h1>
+<p>Find me in app/views/observations/new.html.erb</p>
+
+<% if logged_in? %>
+<p> Do you want to make an observation? </p>
+
+  <%= form_for @observation, html: {class: "observation_form"} do |f| %>
+  <%=f.hidden_field :observationable_id, :value => @proposal.id%>
+  <%=f.hidden_field :observationable_type, :value => @proposal.class %>
+  <%=f.hidden_field :user_id, :value => @proposal.proposer_id %>
+    <p><%= f.hidden_field :body %></p>
+    <p><%= f.text_field :body %></p>
+    <p><%= f.submit "Submit" %></p>
+  <% end %>
+
+  <h5> here are the observations </h5>
+
+  <ul>
+
+<% end %>
+
+
+  <% @proposal.observations.each do |observation| %>
+
+    <li><%=observation.body%></li>
+
+  <%end%>

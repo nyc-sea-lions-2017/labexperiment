@@ -6,9 +6,10 @@ class CommentsController < ApplicationController
       redirect_to request.referrer
     else
       @errors = @comment.errors.full_messages
-
-      render @errors
+      redirect_to request.referrer
     end
   end
+
+
 
 end

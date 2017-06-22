@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :observations, only: [:new, :create, :show]
+
 
 
   resources :comments, only: [:create]

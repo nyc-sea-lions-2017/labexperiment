@@ -2,9 +2,18 @@
 <p>Find me in app/views/observations/new.html.erb</p>
 
 <% if logged_in? %>
-<p> Do you want to make an observation? </p>
+  drop
+
 
   <%= form_for @observation, html: {class: "observation_form"} do |f| %>
+
+  <p> Do you want to make an observation on a procedure or a experiment? </p>
+  <select>
+    <option value="Procedure">Procedure</option>
+    <option value="Experiment">Experiment</option>
+  </select>
+  <p> whats the name of the object you observing? </p>
+  <p><%= f.text_field :observationable_type %></p>
   <%=f.hidden_field :observationable_id, :value => @proposal.id%>
   <%=f.hidden_field :observationable_type, :value => @proposal.class %>
   <%=f.hidden_field :user_id, :value => @proposal.proposer_id %>

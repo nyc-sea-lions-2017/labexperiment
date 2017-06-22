@@ -7,19 +7,15 @@ summary: <%= @proposal.summary %><br>
 state: <%= @proposal.state %><br>
 hypothesis: <%= @proposal.hypothesis %><br><br>
 
-List of current experimenters working on this proposal<br><br>
+List of experimenters who worked on this proposal<br><br>
 <% @proposal.experiments.each do |experiment| %>
   experimenter name: <%=experiment.experimenter.username%><br>
+  <%= link_to 'click here', proposal_experiment_path(@proposal, experiment) %> to see results and conclusions of experiment<br><br>
 <% end %><br>
-<a href="/proposals/<%=@proposal.id%>/experiments/new">Create Experiment on this Proposal</a><br>
+<% if @proposal.state == "open" %>
+  <a href="/proposals/<%=@proposal.id%>/experiments/new">Create Experiment on this Proposal</a><br>
+<% end %>
 <%= link_to 'Back', proposals_path %>
-
-
-<h3>here is the proposal info</h3>
-<p><%= @proposal.name %></p>
-<p><%= @proposal.summary %></p>
-<p><%= @proposal.state %></p>
-<p><%= @proposal.hypothesis %></p>
 
 
 <% if logged_in? %>
@@ -40,10 +36,12 @@ List of current experimenters working on this proposal<br><br>
 <% end %>
 
 
-  <% @proposal.comments.each do |comment| %>
+<% @proposal.comments.each do |comment| %>
 
-    <li><%=comment.body%></li>
+  <li><%=comment.body%></li>
 
-  <%end%>
+<%end%> <br>
 
-
+<% if current_user == @proposal.proposer && @proposal.state == "open"%>
+  <a href="/proposals/close/<%=@proposal.id%>">close proposal</a>
+<% end %>

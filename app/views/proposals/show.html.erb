@@ -1,33 +1,14 @@
 <h1>Proposal</h1>
 
-
-
-
-<% if logged_in? %>
-
-  <%= form_for @comment, url: {action: "comments#create"}, html: {class: "comment_form"} do |f| %>
-  <%f.hidden_field :commentable_id, :value => @proposal.id%>
-  <%f.hidden_field :commentable_type, :value => "proposal" %>
-  <%f.hidden_field :user_id, :value => @proposal.proposer_id %>
-    <p><%= f.label :body %></p>
-    <p><%= f.text_field :body %></p>
-    <p><%= f.submit "Submit" %></p>
-  <% end %>
-
-  <h5> here are the comments </h5>
-  <ul>
-  <% @proposal.comments.each do |comment| %>
-
-    <li><%=comment.body%></li>
-
-  <%end%>
-
-<% end %>
-
-
 here is the proposal info<br>
-<%= @proposal.name %><br>
-<%= @proposal.summary %><br>
-<%= @proposal.state %><br>
-<%= @proposal.hypothesis %><br>
+name: <%= @proposal.name %><br>
+summary: <%= @proposal.summary %><br>
+state: <%= @proposal.state %><br>
+hypothesis: <%= @proposal.hypothesis %><br><br>
 
+List of current experimenters working on this proposal<br><br>
+<% @proposal.experiments.each do |experiment| %>
+  experimenter name: <%=experiment.experimenter.username%><br>
+<% end %><br>
+<a href="/proposals/<%=@proposal.id%>/experiments/new">Create Experiment on this Proposal</a><br>
+<%= link_to 'Back', proposals_path %>

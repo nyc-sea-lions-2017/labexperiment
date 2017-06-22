@@ -6,8 +6,6 @@
 <%= form_for @proposal, url: {action: "create"}, html: {class: "proposal_form"} do |f| %>
   <p><%= f.label :name %></p>
   <p><%= f.text_field :name %></p>
-  <p><%= f.label :state %></p>
-  <p><%= f.text_field :state %></p>
   <p><%= f.label :summary %></p>
   <p><%= f.text_area :summary, size: "60x12" %></p>
   <p><%= f.label :hypothesis %></p>

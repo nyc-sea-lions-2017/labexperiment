@@ -1,5 +1,30 @@
 
 <br>
-experimenter: <%= @experiment.experimenter.username %><br>
-results: <%= @experiment.results %><br>
-conclusions: <%= @experiment.conclusions %><br><br>
+<p>experimenter: <%= @experiment.experimenter.username %><br></p>
+<p>results: <%= @experiment.results %><br></p>
+<p>conclusions: <%= @experiment.conclusions %><br></p>
+
+
+<% if logged_in? %>
+<p> Do you have any comments for this experiment? </p>
+  <%= form_for @comment, html: {class: "comment_form"} do |f| %>
+  <%=f.hidden_field :commentable_id, :value => @experiment.id%>
+  <%=f.hidden_field :commentable_type, :value => @experiment.class %>
+  <%=f.hidden_field :user_id, :value => @experiment.experimenter_id %>
+    <p><%= f.hidden_field :body %></p>
+    <p><%= f.text_field :body %></p>
+    <p><%= f.submit "Submit" %></p>
+  <% end %>
+
+  <h5> here are the comments </h5>
+
+  <ul>
+
+<% end %>
+
+
+  <% @experiment.comments.each do |comment| %>
+
+    <li><%=comment.body%></li>
+
+  <%end%>

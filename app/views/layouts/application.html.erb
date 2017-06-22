@@ -12,8 +12,10 @@
 
     <% if logged_in? %>
       <a href = "/users/logout">log out</a><br>
+      <a href = "/users/index"><%= current_user.username %></a><br>
     <% else %>
       <a href = "/users/login">log in</a><br>
+      <a href = "/users/new">register</a><br>
     <% end %>
     <%= link_to 'Home', proposals_path %>
 

@@ -1,6 +1,20 @@
 <h1>Proposal</h1>
 
 
+here is the proposal info<br>
+name: <%= @proposal.name %><br>
+summary: <%= @proposal.summary %><br>
+state: <%= @proposal.state %><br>
+hypothesis: <%= @proposal.hypothesis %><br><br>
+
+List of current experimenters working on this proposal<br><br>
+<% @proposal.experiments.each do |experiment| %>
+  experimenter name: <%=experiment.experimenter.username%><br>
+<% end %><br>
+<a href="/proposals/<%=@proposal.id%>/experiments/new">Create Experiment on this Proposal</a><br>
+<%= link_to 'Back', proposals_path %>
+
+
 <h3>here is the proposal info</h3>
 <p><%= @proposal.name %></p>
 <p><%= @proposal.summary %></p>
@@ -31,4 +45,5 @@
     <li><%=comment.body%></li>
 
   <%end%>
+
 

@@ -1,13 +1,23 @@
+
+<% if logged_in? %>
+  click <%= link_to "here", new_proposal_path %> to create a proposal
+<% else %>
+  <a href = "/users/new">register</a><br>
+<% end %>
+
+
+
 <h1>Proposal</h1>
-<p>Find me in app/views/proposal/index.html.erb</p>
+
  <% if @proposals %>
   <ul>
-  <p> here are is a list of all proposals</p>
+  <p> here is a list of all proposals</p>
     <%@proposals.each do |proposal| %>
-      <li> <%=proposal.name %></li>
+      <li> <a href="/proposals/<%=proposal.id%>"><%=proposal.name %></a></li>
     <% end %>
   </ul>
 
 <% end %>
   click <%= link_to "here", new_proposal_path %> to create a proposal
 
+<% end %>

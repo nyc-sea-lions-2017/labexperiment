@@ -10,6 +10,7 @@ class ProposalsController < ApplicationController
   def create
     @proposal = Proposal.new(post_params)
     @proposal.proposer_id = current_user.id
+    @proposal.state = "open"
     if @proposal.save
       redirect_to proposal_path(@proposal)
     else

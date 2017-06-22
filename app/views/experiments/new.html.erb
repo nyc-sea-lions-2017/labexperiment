@@ -1,0 +1,12 @@
+
+<h5> Experiment Form </h5>
+
+<%= render "errors" %>
+
+<%= form_for @experiment, url: {action: "create"}, html: {class: "experiment_form"} do |f| %>
+  <p><%= f.label :results %></p>
+  <p><%= f.text_area :results, size: "60x12" %></p>
+  <p><%= f.label :conclusions %></p>
+  <p><%= f.text_area :conclusions, size: "60x12" %></p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

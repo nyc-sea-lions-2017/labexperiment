@@ -21,6 +21,12 @@ class ExperimentsController < ApplicationController
     end
   end
 
+  def results
+    @experiment = Experiment.find(params[:id])
+    @experiment.results = "sdofis"
+    redirect_to @experiment
+  end
+
   private
 
   def post_params

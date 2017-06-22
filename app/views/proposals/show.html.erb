@@ -17,7 +17,7 @@ List of experimenters who worked on this proposal<br><br>
 
 <%= render "errors" %>
 
-<%= form_for @experiment, url: {action: "create"}, html: {class: "experiment_form"} do |f| %>
+<%= form_for [@proposal, @experiment] do |f| %>
   <p><%= f.submit "Create new experiment" %></p>
 <% end %>
 

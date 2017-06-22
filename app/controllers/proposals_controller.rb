@@ -21,11 +21,12 @@ class ProposalsController < ApplicationController
 
   def show
     @proposal = Proposal.find(params[:id])
+    @comment = Comment.new
   end
 
   private
 
   def post_params
-    params.require(:proposal).permit(:name, :summary, :state, :hypothesis, :proposer_id, :id)
+    params.require(:proposal).permit(:name, :summary, :state, :hypothesis, :proposer_id, :id, :commentable_id, :commentable_type, :user_id, :body)
   end
 end

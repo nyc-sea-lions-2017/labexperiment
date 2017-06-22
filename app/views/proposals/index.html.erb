@@ -1,3 +1,4 @@
+
 <% if logged_in? %>
   click <%= link_to "here", new_proposal_path %> to create a proposal
 <% else %>
@@ -6,7 +7,8 @@
 
 
 
-<h1>Proposals</h1>
+<h1>Proposal</h1>
+
  <% if @proposals %>
   <ul>
   <p> here is a list of all proposals</p>
@@ -15,5 +17,7 @@
     <% end %>
   </ul>
 
+<% end %>
+  click <%= link_to "here", new_proposal_path %> to create a proposal
 
 <% end %>

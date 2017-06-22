@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
 
 
-  get 'comments/create'
+  resources :comments, only: [:create]
+
 
   resources :proposals, only: [:index, :new, :create, :show] do
     resources :experiments

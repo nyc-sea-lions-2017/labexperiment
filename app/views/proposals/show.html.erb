@@ -1,5 +1,6 @@
 <h1>Proposal</h1>
 
+
 here is the proposal info<br>
 name: <%= @proposal.name %><br>
 summary: <%= @proposal.summary %><br>
@@ -12,3 +13,37 @@ List of current experimenters working on this proposal<br><br>
 <% end %><br>
 <a href="/proposals/<%=@proposal.id%>/experiments/new">Create Experiment on this Proposal</a><br>
 <%= link_to 'Back', proposals_path %>
+
+
+<h3>here is the proposal info</h3>
+<p><%= @proposal.name %></p>
+<p><%= @proposal.summary %></p>
+<p><%= @proposal.state %></p>
+<p><%= @proposal.hypothesis %></p>
+
+
+<% if logged_in? %>
+<p> Do you have any comments for this proposal? </p>
+  <%= form_for @comment, html: {class: "comment_form"} do |f| %>
+  <%=f.hidden_field :commentable_id, :value => @proposal.id%>
+  <%=f.hidden_field :commentable_type, :value => @proposal.class %>
+  <%=f.hidden_field :user_id, :value => @proposal.proposer_id %>
+    <p><%= f.hidden_field :body %></p>
+    <p><%= f.text_field :body %></p>
+    <p><%= f.submit "Submit" %></p>
+  <% end %>
+
+  <h5> here are the comments </h5>
+
+  <ul>
+
+<% end %>
+
+
+  <% @proposal.comments.each do |comment| %>
+
+    <li><%=comment.body%></li>
+
+  <%end%>
+
+

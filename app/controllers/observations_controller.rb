@@ -1,16 +1,18 @@
 class ObservationsController < ApplicationController
 
   def new
-    @observable = Observation.new
+    @observation = Observation.new
   end
 
   def create
-      @observable = Observation.new(body: params[:observable][:body], user_id: current_user.id, observable_id: params[:observable][:observable_id], observable_type: params[:observable][:observable_type] )
-      model_class = const_get(params[:observable][:observable_type])
-     model_class.find_by(name: params[:observable][:my_attr])
-  if @observable.save
+      @observation = Observation.new(body: params[:observation][:body], user_id: current_user.id, observable_id: params[:observation][:observable_id], observable_type: params[:observation][:observable_type] )
 
-    redirect_to observation_path(@observable)
+     model_class = params[:observation][:observable_type].constantize.all
+     object = model_class.find(params[:observation][:observable_id])
+
+  if @observation.save
+
+    redirect_to observation_path(@observation)
   else
     @errors = @observation.errors.full_messages
 
@@ -19,6 +21,7 @@ class ObservationsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @observation = Observation.find(params[:id])
   end
 

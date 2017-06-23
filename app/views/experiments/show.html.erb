@@ -16,6 +16,15 @@
     <p><%= f.submit "Submit" %></p>
   <% end %>
 
+  <p> these are all the users who made an observation </p>
+  <p> if you want to make an observation please remeber your Experiment id </p>
+  <p> your Experiment id is <%= @experiment.id %> </P>
+  <p> <a href=<%=new_observation_path %> >make observation </a></p>
+  <p>name of users who left an observation</p>
+  <% @experiment.observations.each do | observation | %>
+   <a href="observations/<%= observation.id %>"><%=observation.user.username%></a>
+  <% end %>
+
   <h5> here are the comments </h5>
 
   <ul>

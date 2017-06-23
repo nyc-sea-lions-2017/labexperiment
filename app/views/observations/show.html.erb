@@ -1,2 +1,30 @@
-<h1>Observations#show</h1>
-<p>Find me in app/views/observations/show.html.erb</p>
+<h1>Observations</h1>
+
+
+name: <%= @observation.body %><br>
+observer: <%= @observation.user.username %><br>
+
+
+<% if logged_in? %>
+<p> Do you have any comments for this observation? </p>
+  <%= form_for @comment, html: {class: "comment_form"} do |f| %>
+  <%=f.hidden_field :commentable_id, :value => @observation.id%>
+  <%=f.hidden_field :commentable_type, :value => @observation.class %>
+  <%=f.hidden_field :user_id, :value => @observation.user_id %>
+    <p><%= f.hidden_field :body %></p>
+    <p><%= f.text_field :body %></p>
+    <p><%= f.submit "Submit" %></p>
+  <% end %>
+
+  <h5> here are the comments </h5>
+
+  <ul>
+
+<% end %>
+
+
+<% @observation.comments.each do |comment| %>
+
+  <li><%=comment.body%></li>
+
+<%end%>

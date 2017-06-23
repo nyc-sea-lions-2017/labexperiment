@@ -5,20 +5,20 @@
   drop
 
 
-  <%= form_for @observable, html: {class: "observation_form"} do |f| %>
+  <%= form_for @observation, html: {class: "observation_form"} do |f| %>
 
   <p> Do you want to make an observation on a procedure or a experiment? </p>
   <%= f.select :observable_type, ["Procedure", "Experiment"] %>
-  <p> whats the name of the object you observing? </p>
-  <%= check_box_tag :my_attr %>
-  <%=f.hidden_field :user_id, :value => @observable.user_id %>
+  <p> whats the  of the object you observing? </p>
+  <%= f.number_field :observable_id %>
+  <%=f.hidden_field :user_id, :value => @observation.user_id %>
     <p><%= f.hidden_field :body %></p>
   <p> whats is your observation? </p>
-    <p><%= f.text_field :body %></p>
+    <p><%= f.text_area :body, size: "60x12" %></p>
     <p><%= f.submit "Submit" %></p>
   <% end %>
 
-  <h5> here are the observations </h5>
+
 
   <ul>
 

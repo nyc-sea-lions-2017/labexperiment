@@ -4,9 +4,21 @@
 body {
     margin: 0 auto;
     width: 500px;
-    background-color: orange;
+
     font-family: helvetica;
-    background-image: url("https://static.pexels.com/photos/4154/clinic-doctor-health-hospital.jpg");
-    background-repeat: no-repeat;
+    background : #eee;
+    padding: 20px 15px;
+    margin-top: 50px;
+
+}
+
+html {
+  background-image: url("https://static.pexels.com/photos/4154/clinic-doctor-health-hospital.jpg");
+  background-repeat: no-repeat;
     background-position: right top;
+
+}
+
+ul li {
+  display: inline-block;
 }
